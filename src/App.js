@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import "./App.css";
+import "tachyons";
+
+import Nav from "./component/Nav";
 
 require("dotenv").config();
 
@@ -25,26 +28,46 @@ const App = () => {
     return books.map((book) => {
       return (
         <ul key={book.accessInfo.id}>
-          <li>{book.volumeInfo.title}</li>
-          <li>{book.volumeInfo.authors}</li>
-          <li>{book.volumeInfo.categories}</li>
-          <li>{book.volumeInfo.publishedDate}</li>
+          <img
+            src={book.volumeInfo.imageLinks.smallThumbnail}
+            alt={book.volumeInfo.title}
+          />
+          <li>
+            <strong>Name of the Book: </strong>
+            {book.volumeInfo.title}
+          </li>
+          <li>
+            <strong>Name of the Author: </strong>
+            {book.volumeInfo.authors}
+          </li>
+          <li>
+            <strong>Categories: </strong>
+            {book.volumeInfo.categories}
+          </li>
+          <li>
+            <strong>Date Published: </strong>
+            {book.volumeInfo.publishedDate}
+          </li>
         </ul>
       );
     });
   };
 
   return (
-    <div className="App">
-      <h1>Search For a Book!</h1>
-      <form onSubmit={submitForm}>
-        <input
-          type="text"
-          placeholder="search for a book"
-          onChange={renderChange}
-        />
-      </form>
-      {getBooks()}
+    <div>
+      <Nav />
+      <div className="home">
+        <h1>Search For a Book!</h1>
+        <form onSubmit={submitForm}>
+          <input
+            className="input"
+            type="text"
+            placeholder="search for a book"
+            onChange={renderChange}
+          />
+        </form>
+        {getBooks()}
+      </div>
     </div>
   );
 };
