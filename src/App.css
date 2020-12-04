@@ -2,9 +2,13 @@
   list-style-type: none;
 }
 
+html {
+  min-height: 100%;
+}
+
 .home {
   background-color: #e8e8e8;
-  height: 100vh;
+  height: 100%;
   text-align: center;
   padding: 15px;
 }
